@@ -36,6 +36,7 @@ h1 {
     letter-spacing: 4px;
     text-align: center;
     line-height: 1.7em;
+    white-space: nowrap;
 }
 
 h3 {
@@ -78,4 +79,79 @@ img {
 .bodyCopy-italics {
     font-family: "Noto Serif", serif;
     font-style: italic;
+}
+
+@media (max-width: 800px) {
+    body {
+        margin: 20px;
+        font-size: 16px;
+    }
+
+    div#content {
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 20px 40px;
+    }
+
+    h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    h3 {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    img {
+        width: 50%;
+        max-width: 200px;
+        padding: 20px 0;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    body {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    div#content {
+        max-width: 95%;
+        margin: 30px auto;
+        padding: 15px 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+        letter-spacing: 1px;
+        white-space: wrap;
+    }
+
+    h3 {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    img {
+        width: 70%;
+        max-width: 150px;
+        padding: 15px 0;
+    }
+
+    ul {
+        padding-left: 15px;
+    }
+
+    li {
+        margin-bottom: 15px;
+    }
 }
