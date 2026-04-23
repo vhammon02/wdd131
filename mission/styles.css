@@ -35,6 +35,7 @@ h1 {
     font-weight: 600;
     letter-spacing: 4px;
     text-align: center;
+    line-height: 1.7em;
 }
 
 h3 {
@@ -45,6 +46,7 @@ h3 {
     text-align: center;
     padding: 0;
     margin: 0;
+    line-height: 1.7em;
 }
 
 hr {
@@ -55,7 +57,7 @@ hr {
 }
 
 ul {
-    line-height: 1.5em;
+    line-height: 1.7em;
     margin: 0 auto;
     list-style: number;
 }
