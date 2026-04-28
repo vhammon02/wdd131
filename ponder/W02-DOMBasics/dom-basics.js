@@ -15,3 +15,11 @@ document.getElementById("content").style.color = "darkblue";
 document.getElementsByTagName("h1")[0].style.color  = "darkred";
 
 console.log(document.getElementById("content").textContent);
+
+
+let selectElem = document.getElementById('webdevlist');
+selectElem.addEventListener('change', function(){
+    let codeValue = selectElem.value;
+    console.log(codeValue);
+})
+                
