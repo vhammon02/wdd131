@@ -21,6 +21,7 @@ body {
     font-size: 18px;
     line-height: 1.7em;
     margin: 50px;
+    
 }
 
 div#content {
@@ -31,12 +32,13 @@ div#content {
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 600;
     letter-spacing: 4px;
     text-align: center;
     line-height: 1.7em;
     white-space: nowrap;
+    padding-top: 50px;
 }
 
 h3 {
