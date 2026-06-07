@@ -28,7 +28,7 @@ studentIDInput.addEventListener("invalid", (event) => {
         studentIDInput.setCustomValidity("This field is required.");
     } else if (studentIDInput.validity.patternMismatch) {
         studentIDInput.setCustomValidity("Please enter a valid 9-digit student ID.");
-        errorMessage.classList.remove("hidden");
+        errorMessage.classList.toggle("hidden", false);
     
     }
 });
@@ -36,6 +36,8 @@ studentIDInput.addEventListener("invalid", (event) => {
 // Clear the message when the user starts typing
 studentIDInput.addEventListener("input", () => {
     studentIDInput.setCustomValidity("");
+    errorMessage.classList.toggle("hidden", true);
+
 });
 
 // ticket generation
