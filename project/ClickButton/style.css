@@ -10,8 +10,8 @@ body {
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100dvw;
   font-family: "Source Sans 3", sans-serif;
   overflow-x: hidden;
 }
@@ -19,6 +19,7 @@ header {
   background-color: #E0E8FF;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;s
 }
 header h1 {
   margin: 0;
@@ -44,9 +45,10 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
+  min-height: 0;  
   width: 100%;
   margin: auto;
+  flex: 1
 }
 
 main h2 {
@@ -66,14 +68,16 @@ main h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
   padding: 10px;
   border-radius: 5px;
   font-size: .6rem;
   max-width: 10vw;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #E0E8FF;
 }
-
+.title {
+  font-size: 2rem;
+}
 #widgets div p {
   text-align: center;
 }
@@ -139,15 +143,49 @@ div#stats p {
   margin: 0;
 }
 #upgrades button {
+  width: 10em;
+  height:3em;
+  border-radius: 4px;
+  border: 2px solid #4d2e29;
+  padding: 1px;
+}
+#upgrades button:disabled {
   max-width: 10em;
+  cursor: not-allowed;
+  border: 2px solid #4d2e29;;
+  color: #ececec;
+  background-color: #251613;
+
+  border-radius: 4px;
+}
+  #cubeWdg {
+    background-color: #1d36b2 ;
+  }
+  #circWdg {
+    background-color: #538216;
+  }
+  #xWdg{
+    background-color: #D63B15;
+}
+
+  #lWdg {
+    background-color: #1d36b2;
+}
+#coolWdg {
+  background-position: center;
+  background-size: cover;
+  min-width: 4em;
 }
 
 @media (min-width: 600px) {
+  header {
+    flex-shrink: 0;
+  }
   html {
     overflow: hidden;
   }
   body {
-
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
   }
@@ -156,16 +194,31 @@ div#stats p {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3,1fr);
     gap: 8px;
+    min-height: 0; 
+   ;
   }
-
-  #buttonContainer {
+  .title {
+    font-size: 2.4rem;
+  }
+  .buttonContainer {
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
     grid-column-start: 2;
     grid-row-start: 1;
   }
+  #upgrades {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   #widgets {
     display: contents;
+  }
+  #widgets div {
+    max-width: 10vw;
+    font-size: .8rem;
+    margin: 0 auto;
   }
   #cubeWdg {
     grid-column-start: 1;
@@ -185,20 +238,27 @@ div#stats p {
     grid-column-start: 2;
     grid-row-start: 3;
 }
-  #collWdg{
+  #coolWdg{
     grid-column-start: 3;
     grid-row-start: 3;
+    width: 10em;
+    height: 10em;
+   
 }
-  #stats {
+  div#stats {
     grid-column: span 2 / span 2;
     grid-column-start: 4;
-    grid-row-start: 3;
+    grid-row-start: 1;
+    display: flex;
+    flex-direction: column;
+    align-items:normal
 }
   #upgrades {
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
     grid-column-start: 4;
-    grid-row-start: 1;
+    grid-row-start: 2;
+    display: flex;
 }
 
 

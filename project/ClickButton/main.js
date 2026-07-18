@@ -1,7 +1,62 @@
+// declared global variables
+
 let points = 0;
 let clickValue = 1;
 let passiveValue = 0;
 let lifetimePoints = 0;
+
+
+
+
+
+function passivePoints(increaseBy) {
+  passiveValue += increaseBy;
+  console.log("Passive points activated! +" + increaseBy + "/sec");
+}
+
+function increasePassivePoints(multiplyBy) {
+  passiveValue *= multiplyBy;
+  document.getElementById("passiveValue").textContent = "Pts per Second: " + passiveValue;
+}
+
+// added array of objects for upgrades.
+const upgrades = [
+  {
+    id: "upgrade1",
+    widgetId: "cubeWdg",
+    cost: 10,
+    purchased: false,
+    code: () => passivePoints(1)
+  },
+  {
+    id: "upgrade2",
+    widgetId: "circWdg",
+    cost: 20,
+    purchased: false,
+    code: () => increaseClickPoints(2)
+  },
+  {
+    id: "upgrade3",
+    widgetId: "xWdg",
+    cost: 50,
+    purchased: false,
+    code: () => passivePoints(10)
+  },
+  {
+    id: "upgrade4",
+    widgetId: "lWdg",
+    cost: 100,
+    purchased: false,
+    code: () => increasePassivePoints(5)
+  },
+  {
+    id: "upgrade5",
+    widgetId: "coolWdg",
+    cost: 200,
+    purchased: false,
+    code: () => document.getElementById("coolWdg").style.backgroundImage = "url('images/bird.png')"
+  }
+];
 
 // add function to increase clickPoints
 
@@ -10,6 +65,8 @@ function increaseClickPoints(increaseBy) {
     document.getElementById("clickValue").textContent = "Pts per Click: " + clickValue;
 
 }
+
+// function for adding points every second and updating the relevant stats
 
 setInterval(function() {
     points += passiveValue;
@@ -29,95 +86,54 @@ document.getElementById("clickButton").addEventListener("click", function() {
   checkPoints();
 });
 
-// check points value to reveal upgrades
+// cycles through each object in the array and will add an event listener to them
+// if there are enough point on click, it will subtract the cost and set it to purchased
+// it then runs the functtion that is stored in the code part of the object
+// and will disable the button and change the text to show that it was purchased.
+upgrades.forEach(function(upgrade) {
+    document.getElementById(upgrade.id).addEventListener("click", function() {
+        if (points >= upgrade.cost && !upgrade.purchased) {
+            points -= upgrade.cost;
+            upgrade.purchased = true;
+            upgrade.code();
+            document.getElementById(upgrade.widgetId).classList.remove("hidden");
+            this.disabled = true;
+            this.textContent = "Upgrade Unlocked";
+        }
+
+    });
+});
 
 function checkPoints() {
-   if (points >= 200) {
-    document.getElementById("upgrade5").classList.remove("hidden");
+    // checks to see if there is enough points to mark it as available and it hasn't been purchased yet)
+  const available = upgrades.filter(function(upName) {
+    return points >= upName.cost && !upName.purchased;
+  });
+  //remove hidden from the upgrades saved as purchased
+  available.forEach(function(upName) {
+    document.getElementById(upName.id).classList.remove("hidden");
+  });
+
+  // changes the hint text based on points and reveals the initial container for 
+  //upgrades and widgets when you reach 10 points
+  if (lifetimePoints >= 200) {
+    document.getElementById("hint1").textContent = "You can unlock a friend!";
+  } 
+  else if (lifetimePoints >= 100) {
+    document.getElementById("hint1").textContent = "You made it to 100!";
   }
-    else if (points >= 100) {
-    document.getElementById("upgrade4").classList.remove("hidden");
-    document.getElementById("lWdg").classList.remove("hidden");
+    else if (lifetimePoints >= 50) {    
+        document.getElementById("hint1").textContent = "You can unlock a Superb Upgrade now!";
   }
-    else if (points >= 50) {
-    document.getElementById("upgrade3").classList.remove("hidden");
-    document.getElementById("xWdg").classList.remove("hidden");
-  } else if (points >= 20) {
-    document.getElementById("upgrade2").classList.remove("hidden");
-    document.getElementById("circWdg").classList.remove("hidden");
-  } else if (points >= 10) {
+  else if (lifetimePoints >= 20) {
+        document.getElementById("hint1").textContent = "Look! There's another upgrade!";
+  }
+  else if (lifetimePoints >= 10) {
     document.getElementById("hint1").textContent = "Use Points to Earn Upgrades!";
     document.getElementById("upgrades").classList.remove("hidden");
-    document.getElementById("upgrades").style.display = "grid";
-    document.getElementById("widgets").classList.remove("hidden");
   } else {
     document.getElementById("hint1").textContent = "Click the button to earn points...";
   }
 }
 
-// Upgrade 1: add +1 points every second
 
-function passivePoints(increaseBy) {
-  passiveValue += increaseBy;
-  console.log("Passive points activated! +" + increaseBy + "/sec");
-}
-
-function increasePassivePoints(multiplyBy) {
-  passiveValue *= multiplyBy;
-  document.getElementById("passiveValue").textContent = "Pts per Second: " + passiveValue;
-}
-
-document.getElementById("upgrade1").addEventListener("click", function() {
-  if (points >= 10) {
-    points -= 10;
-    passivePoints(1);
-    this.disabled = true;
-    this.textContent = "Passive pts active";
-  }
-});
-
-// Upgrade 2: add x2 points per click
-
-document.getElementById("upgrade2").addEventListener("click", function() {
-  if (points >= 20) {
-    points -= 20;
-    console.log("Upgrade 2 purchased! Passive points activated.");
-    increaseClickPoints(2);
-    this.disabled = true; // prevent buying it again / stacking intervals
-    this.textContent = "Pts upgrade active";
-  }
-});
-
-
-// Upgrade 3: add +10 points every second
-
-document.getElementById("upgrade3").addEventListener("click", function() {
-  if (points >= 50) {
-    points -= 50;
-    passivePoints(10); // removed the duplicate manual += 10
-    this.disabled = true;
-    this.textContent = "Super passive pts active";
-  }
-});
-
-// Upgrade 4: add x5 more points per click
-
-document.getElementById("upgrade4").addEventListener("click", function() {
-  if (points >= 100) {           
-    points -= 100;               
-    increasePassivePoints(5);    
-    this.disabled = true;
-    this.textContent = "Mega pts upgrade active";
-  }
-});
-
-// Upgrade 5: add friend
-
-document.getElementById("upgrade5").addEventListener("click", function() {
-  if (points >= 200) {
-    points -= 200;
-    document.getElementById("coolWdg").classList.remove("hidden");
-
-    this.disabled = true;
-  }
-});
