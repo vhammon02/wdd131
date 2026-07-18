@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--Meta tags and such-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Click Button</title>
   <meta name="description" content="A simple interactive button page.">
   <meta name="author" content="Your Name">
   <meta name="theme-color" content="#ffffff">
+  <!--This section is favicon stuff-->
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io (2)/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io (2)/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io (2)/favicon-16x16.png">
   <link rel="manifest" href="images/favicon_io (2)/site.webmanifest">
+  <!--This section is stuff I found that helps preloading for performance-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="images/ClickButtonLogo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
 </head>
@@ -24,7 +31,7 @@
   </header>
   <main>
       <div class="buttonContainer">
-        <p class="title">Click The Button!</p>  
+        <h2>Click The Button!</h2>  
         <button id="clickButton" aria-label="Click to earn points"></button>
         <p id="hint1" class="source-sans-3-reg" aria-live="polite">Click the button to earn points...</p>
       </div>
@@ -33,7 +40,7 @@
         <div id= "circWdg" class="hidden"><p>2x Click</p></div>
         <div id="xWdg" class="hidden"><p>+1 Pts/ sec</p></div>
         <div id="lWdg" class="hidden"><p>5x Click</p></div>
-        <div id="coolWdg" class="hidden"><p>:D</p></div>
+        <div id="coolWdg" class="hidden" aria-label="Picture of a Feathered Friend"><p>Bird Friend</p></div>
       </div>
     <div id="stats">
       <p id="Total" >Pts: 0</p>
@@ -43,12 +50,12 @@
     </div>
     
     <div id="upgrades" class="hidden upgradesContainer">
-      <p>Upgrades Available!</p>
+      <h3>Upgrades Available!</h3>
       <button id="upgrade1">10 pts: Earn +1 Points Every Second</button>
       <button id="upgrade2" class="hidden">20 pts: Earn 2x Points Every Click</button>
       <button id="upgrade3" class="hidden">50 pts: Earn +10 Points Every Second</button>
       <button id="upgrade4" class="hidden">100 pts: Earn 5x Points Every Second</button>
-      <button id="upgrade5" class="hidden" aria-label="Picture of a Feathered Friend">200 pts: Add a friend</button>
+      <button id="upgrade5" class="hidden" >200 pts: Add a friend</button>
       
     </div>
   </main>
