@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+
+/* General Styles */
+html{
+  overflow-x: hidden;
+}
+body {
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Source Sans 3", sans-serif;
+  overflow-x: hidden;
+}
+header {
+  background-color: #E0E8FF;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #000000;
+  font-weight: 400;
+  justify-self: center;
+}
+nav.topnav {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+nav.topnav a {
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+main h2 {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+#widgets {
+  display: flex;
+  gap: 10px;
+  max-width: fit-content;
+  max-height: clamp(4em, 5vw, 20em);
+}
+#widgets div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: .6rem;
+  max-width: 10vw;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#widgets div p {
+  text-align: center;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#clickButton {
+  background-image: url('images/ClickButtonLogo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  border-radius: 50%;
+  width: clamp(100px, 60vw, 300px);
+  height: clamp(100px, 60vw, 300px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#clickButton:active {
+  background-image: url('images/ClickButtonLogoDepress.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  border-radius: 50%;
+
+}
+
+div#stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+div#stats p {
+  margin: 0 10px;
+  font-size: .8rem;
+  color: #000000;
+}
+#Total {
+  font-weight: bold;
+}
+
+.upgradesContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+#upgrades h3 {
+  grid-column: span 2;
+  text-align: center;
+  margin: 0;
+}
+#upgrades button {
+  max-width: 10em;
+}
+
+@media (min-width: 600px) {
+  html {
+    overflow: hidden;
+  }
+  body {
+
+    width: 100vw;
+    height: 100vh;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 8px;
+  }
+
+  #buttonContainer {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+  #widgets {
+    display: contents;
+  }
+  #cubeWdg {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+  #circWdg {
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+  #xWdg{
+    grid-column-start: 1;
+    grid-row-start: 3;
+}
+
+  #lWdg {
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+  #collWdg{
+    grid-column-start: 3;
+    grid-row-start: 3;
+}
+  #stats {
+    grid-column: span 2 / span 2;
+    grid-column-start: 4;
+    grid-row-start: 3;
+}
+  #upgrades {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 4;
+    grid-row-start: 1;
+}
+
+
+
+}
