@@ -176,6 +176,19 @@ div#stats p {
   min-width: 4em;
 }
 
+div#widgets div {
+  animation: spin-animation 2s linear infinite;
+}
+
+@keyframes spin-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
 @media (min-width: 600px) {
   header {
     flex-shrink: 0;
@@ -257,6 +270,18 @@ div#stats p {
     grid-column-start: 4;
     grid-row-start: 2;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+  #upgrades button{
+    max-width: 100%;
+    margin: auto;
+}
+  #upgrades h3 {
+    margin: auto;
+  }
+  #upgrades button:disabled{
+    max-width: 100%;
 }
 
 
