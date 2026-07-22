@@ -281,3 +281,71 @@ const recipes = [
 	}
 ]            
                     
+const recipeContainer = document.querySelector("#recipe-container");
+const input = document.querySelector("#recipe-search");
+const form = document.querySelector(".search-bar");
+
+function tagTemplate(tags) {
+    return tags.map(tag => `<button class="tag">${tag}</button>`).join("");
+}
+
+function ratingTemplate(rating) {
+    let html = `<span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">`;
+
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            html += `<span aria-hidden="true">⭐</span>`;
+        } else {
+            html += `<span aria-hidden="true">☆</span>`;
+        }
+    }
+
+    html += `</span>`;
+    return html;
+}
+
+function recipeTemplate(recipe) {
+    return `
+    <article class="recipe-card">
+        <img src="${recipe.image}" alt="${recipe.name}">
+        <div class="recipe-info">
+            ${tagTemplate(recipe.tags)}
+            <h2>${recipe.name}</h2>
+            ${ratingTemplate(recipe.rating)}
+            <p class="description">${recipe.description}</p>
+        </div>
+    </article>`;
+}
+
+function renderRecipes(recipeArray) {
+    recipeContainer.innerHTML = "";
+
+    recipeArray.forEach(recipe => {
+        recipeContainer.innerHTML += recipeTemplate(recipe);
+    });
+}
+
+function search(event) {
+    event.preventDefault();
+
+    const query = input.value.trim().toLowerCase();
+
+    const filteredRecipes = recipes.filter(recipe =>
+        recipe.name.toLowerCase().includes(query) ||
+        recipe.description.toLowerCase().includes(query) ||
+        recipe.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+
+    filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
+
+    renderRecipes(filteredRecipes);
+}
+
+function init() {
+    const randomIndex = Math.floor(Math.random() * recipes.length);
+    renderRecipes([recipes[randomIndex]]);
+}
+
+init();
+
+form.addEventListener("submit", search);
